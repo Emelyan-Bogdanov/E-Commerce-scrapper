@@ -1,0 +1,185 @@
+{
+  "sites": [
+    {
+      "site_name": "Books Store Example",
+      "base_url": "https://example-books.com",
+      "product_pages": [
+        {
+          "url": "https://example-books.com/category/technology",
+          "site_id": "books_store_tech",
+          "selectors": {
+            "product_container": "div.book-card",
+            "product_id": "data-book-id",
+            "product_name": "h3.book-title",
+            "product_price": "span.book-price",
+            "product_original_price": "span.original-price",
+            "product_discount": "span.discount-label",
+            "product_stock": "span.availability",
+            "product_rating": "div.star-rating",
+            "product_review_count": "span.review-count",
+            "product_image": "img.book-cover",
+            "product_url": "a.book-link",
+            "product_description": "p.book-description"
+          },
+          "pagination": {
+            "enabled": true,
+            "next_page_selector": "a.page-next",
+            "max_pages": 3
+          }
+        },
+        {
+          "url": "https://example-books.com/category/fiction",
+          "site_id": "books_store_fiction",
+          "selectors": {
+            "product_container": "div.book-item",
+            "product_id": "id",
+            "product_name": "h4.title",
+            "product_price": "span.current-price",
+            "product_original_price": "span.list-price",
+            "product_discount": "span.savings-pct",
+            "product_stock": "span.in-stock",
+            "product_rating": "span.avg-rating",
+            "product_review_count": "span.total-ratings",
+            "product_image": "img.thumbnail",
+            "product_url": "a.product-url",
+            "product_description": "div.synopsis"
+          },
+          "pagination": {
+            "enabled": true,
+            "next_page_selector": "li.next a",
+            "max_pages": 5
+          }
+        }
+      ]
+    },
+    {
+      "site_name": "Electronics Store Example",
+      "base_url": "https://example-electronics.com",
+      "product_pages": [
+        {
+          "url": "https://example-electronics.com/smartphones",
+          "site_id": "electronics_phones",
+          "selectors": {
+            "product_container": "article.product",
+            "product_id": "data-sku",
+            "product_name": "h2.product-name",
+            "product_price": "span.sale-price",
+            "product_original_price": "span.regular-price",
+            "product_discount": "span.discount",
+            "product_stock": "span.stock-status",
+            "product_rating": "span.rating",
+            "product_review_count": "span.review-num",
+            "product_image": "img.prod-image",
+            "product_url": "a.prod-link",
+            "product_description": "p.prod-desc"
+          },
+          "pagination": {
+            "enabled": true,
+            "next_page_selector": "a.next-page",
+            "max_pages": 10
+          }
+        },
+        {
+          "url": "https://example-electronics.com/laptops",
+          "site_id": "electronics_laptops",
+          "selectors": {
+            "product_container": "li.item",
+            "product_id": "data-product-id",
+            "product_name": "span.item-name",
+            "product_price": "span.item-price",
+            "product_original_price": "span.prev-price",
+            "product_discount": "span.discount-percent",
+            "product_stock": "span.availability-status",
+            "product_rating": "div.ratings span",
+            "product_review_count": "span.ratings-total",
+            "product_image": "img.item-img",
+            "product_url": "a.item-link",
+            "product_description": "p.item-description"
+          },
+          "pagination": {
+            "enabled": true,
+            "next_page_selector": "a.next",
+            "max_pages": 5
+          }
+        }
+      ]
+    }
+  ],
+  "global_settings": {
+    "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "timeout": 10,
+    "retry_count": 3,
+    "delay_between_requests": 2,
+    "use_proxy": false,
+    "proxy_list": [
+      "http://proxy1.com:8080",
+      "http://proxy2.com:8080"
+    ],
+    "headless_browser": false,
+    "browser_type": "chromium"
+  },
+  "data_extraction": {
+    "fields": {
+      "product_id": {
+        "type": "string",
+        "required": true,
+        "description": "Unique product identifier (SKU, ID, etc.)"
+      },
+      "product_name": {
+        "type": "string",
+        "required": true,
+        "description": "Product name or title",
+        "max_length": 500
+      },
+      "product_price": {
+        "type": "float",
+        "required": true,
+        "description": "Current selling price",
+        "min_value": 0.01,
+        "max_value": 1000000
+      },
+      "product_original_price": {
+        "type": "float",
+        "required": false,
+        "description": "Original price before discount"
+      },
+      "product_discount": {
+        "type": "float",
+        "required": false,
+        "description": "Discount percentage (0-100)"
+      },
+      "product_stock": {
+        "type": "string",
+        "required": false,
+        "description": "Stock availability status",
+        "valid_values": ["in_stock", "out_of_stock", "limited_stock", "pre_order"]
+      },
+      "product_rating": {
+        "type": "float",
+        "required": false,
+        "description": "Product rating (1-5 scale)"
+      },
+      "product_review_count": {
+        "type": "integer",
+        "required": false,
+        "description": "Number of customer reviews"
+      },
+      "product_image": {
+        "type": "string",
+        "required": false,
+        "description": "Product image URL"
+      },
+      "product_url": {
+        "type": "string",
+        "required": true,
+        "description": "Product detail page URL"
+      },
+      "product_description": {
+        "type": "string",
+        "required": false,
+        "description": "Product description text",
+        "max_length": 1000
+      }
+    }
+  }
+}

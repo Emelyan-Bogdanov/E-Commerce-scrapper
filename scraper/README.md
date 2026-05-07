@@ -1,0 +1,6 @@
+
+
+
+### Technologies
+- BeautifulSoup
+- requests
